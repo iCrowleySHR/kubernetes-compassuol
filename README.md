@@ -28,7 +28,10 @@ Este projeto prático ensina como implementar uma pipeline GitOps completa usand
    - Aguarde aparecer **"Kubernetes running"** com ✔️ verde
 
 **Verificação:**
-`kubectl get nodes`
+
+```bash
+kubectl get nodes
+```
 
 **Resultado esperado:** Lista seu nó com STATUS "Ready"
 
@@ -42,7 +45,10 @@ Este projeto prático ensina como implementar uma pipeline GitOps completa usand
 4. Abra o Prompt de Comando/Terminal
 
 **Teste a instalação:**
+
+```bash
 `kubectl version --client`
+```
 
 **Resultado esperado:** Mostra a versão instalada
 
@@ -56,7 +62,10 @@ Este projeto prático ensina como implementar uma pipeline GitOps completa usand
 4. Aguarde o ícone da baleia aparecer na barra de tarefas
 
 **Teste a instalação:**
+
+```bash
 `docker ps`
+```
 
  **Resultado esperado:** Lista containers (pode estar vazia)
  
@@ -71,7 +80,9 @@ Este projeto prático ensina como implementar uma pipeline GitOps completa usand
 3. Instale com configurações padrão
 
 **Teste a instalação:**
-`git --version`
+```bash
+git --version
+```
 
 **Resultado esperado:** Mostra a versão do Git
 
@@ -114,6 +125,7 @@ Este projeto prático ensina como implementar uma pipeline GitOps completa usand
 ```bash
 git clone https://github.com/SeuUsuario/kubernetes-compassuol.git
 ```
+
 > Troque *SeuUsuario* pelo seu nickname do GitHub
 
 3. Deixe a estrutura de pasta assim:
@@ -135,24 +147,41 @@ git clone https://github.com/SeuUsuario/kubernetes-compassuol.git
 1. Acesse a pasta raíz do seu repositório clonado
 
 2. Adicione os arquivos e faça commit:
-`git add .`
-`git commit -m "feat: manifestos da Online Boutique"`
 
-3. Envie para o GitHub:
-`git push -u origin main`
+```bash
+git add .
+git commit -m "feat: manifestos da Online Boutique"
+```
+
+4. Envie para o GitHub:
+
+```bash
+git push -u origin main
+```
 
 ---
 
 ## ETAPA 2: Instalar ArgoCD no Kubernetes
 
+No terminal, coloque os comandos abaixo para instalar o ArgoCD
+
 ### 2.1 Criar Namespace
-`kubectl create namespace argocd`
+
+```bash
+kubectl create namespace argocd
+```
 
 ### 2.2 Instalar ArgoCD
-`kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml`
+
+```bash
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
 
 ### 2.3 Verificar Instalação
-`kubectl get pods -n argocd`
+
+```bash
+kubectl get pods -n argocd
+```
 
  **Aguarde** até que todos os pods estejam com STATUS **"Running"** (pode levar 2-3 minutos)
 
@@ -161,8 +190,11 @@ git clone https://github.com/SeuUsuario/kubernetes-compassuol.git
 ##  ETAPA 3: Acessar Interface do ArgoCD
 
 ### 3.1 🔗 Fazer Port-Forward
-1. No terminal rode o comando: 
-`kubectl port-forward svc/argocd-server -n argocd 8080:443`
+1. No terminal rode o comando:
+
+```bash
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
 
  **Resultado esperado:** `Forwarding from 127.0.0.1:8080 -> 8080`
 
@@ -175,7 +207,10 @@ git clone https://github.com/SeuUsuario/kubernetes-compassuol.git
 **Usuário:** `admin`
 
 **Senha:** Obtenha com este comando no terminal:
-`kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
+
+```bash
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
 
  **Copie** a senha que aparecer e **cole** no campo de password
 
@@ -225,9 +260,7 @@ Com isso, podemos fazer o Port-Forward no terminal com o comando
 kubectl port-forward service/frontend-external 8081:80
 ```
 
-Assim você conseguirá acessar a sua aplicação na porta 8081. Concluindo o que esse projeto se propôs: 
-
-*Ensinar como implementar uma pipeline GitOps completa usando Kubernetes local, ArgoCD para deploy automatizado e a aplicação Online Boutique do Google.*
+Acesse
 
 ```bash
 http://localhost:8081/
@@ -235,13 +268,24 @@ http://localhost:8081/
 
 <img width="1918" height="1046" alt="image" src="https://github.com/user-attachments/assets/66e27e1f-5c55-4f93-9f2c-5b9af3220897" />
 
+##  ETAPA 5 (Opcional): Aumentar réplicas
 
+### o que é GitOps?
 
+* O GitOps é um jeito de gerenciar infraestrutura e aplicações usando o Git como “fonte da verdade”.
 
+* Isso significa que tudo o que está no seu repositório Git (por exemplo, seus arquivos .yaml do Kubernetes) é considerado o estado desejado do seu cluster.
 
+* O ArgoCD fica de olho nesse repositório — e garante que o Kubernetes esteja sempre igual ao que está no Git.
 
+--- 
 
+### Edite o arquivo online-boutique.yaml no seu repositório.
 
+Aumente o número de réplicas, por exemplo:
 
+```bash
+replicas: 2
+```
 
-
+> Faça commit e push. O ArgoCD vai detectar e aplicar automaticamente a mudança caso a sincronização automática esteja ativada. Se não é só sincronizar no site.
