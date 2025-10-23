@@ -64,7 +64,7 @@ kubectl get nodes
 **Teste a instalação:**
 
 ```bash
-`docker ps`
+docker ps
 ```
 
  **Resultado esperado:** Lista containers (pode estar vazia)
@@ -289,3 +289,71 @@ replicas: 2
 ```
 
 > Faça commit e push. O ArgoCD vai detectar e aplicar automaticamente a mudança caso a sincronização automática esteja ativada. Se não é só sincronizar no site.
+
+## ETAPA EXTRA: Conectar no ArgoCD um Repositório Privado
+
+Se o seu repositório no GitHub for **privado**, o ArgoCD **não conseguirá acessar** os manifestos automaticamente.  
+Para resolver isso, é necessário **adicionar suas credenciais do GitHub** dentro do painel do ArgoCD.
+
+---
+
+### 1. Criar Token de Acesso no GitHub
+
+1. Vá até o GitHub e clique na sua foto → **Settings**  
+2. No menu lateral, clique em **Developer settings**  
+3. Clique em **Personal access tokens → Tokens (classic)**  
+4. Clique em **Generate new token → Generate new token (classic)**  
+5. Marque a permissão:  
+   -  `repo` (acesso a repositórios privados)  
+6. Clique em **Generate token**  
+7. **Copie o token gerado** (ele só aparece uma vez!)  
+
+>  Guarde o token em local seguro — ele será usado para conectar o repositório no ArgoCD.
+
+<img width="1919" height="980" alt="image" src="https://github.com/user-attachments/assets/f391b7f4-4c1b-43b1-83ed-0ca945397e78" />
+
+
+---
+
+###  2. Conectar o Repositório pela Interface Gráfica do ArgoCD
+
+1. No painel do ArgoCD, vá até o menu lateral e clique em **Settings → Repositories**  
+2. Clique no botão **"Connect Repo using HTTPS"**  
+3. Preencha as informações:
+
+**Repository URL:**  
+```bash
+https://github.com/SeuUsuario/kubernetes-compassuol.git**
+```
+
+**Username:**  
+**SeuUsuario**
+
+**Password:**  
+**SEU_TOKEN_DO_GITHUB**
+
+4. Clique em **Connect**  
+5. Se tudo estiver correto, o status do repositório aparecerá como **Successful ✅**
+
+<img width="1919" height="1044" alt="image" src="https://github.com/user-attachments/assets/e2b95e9a-786f-4b53-b1c1-900ad801f556" />
+<img width="1919" height="1041" alt="image" src="https://github.com/user-attachments/assets/287523ad-9327-49cb-945d-caf12b09e4fa" />
+<img width="1918" height="1045" alt="image" src="https://github.com/user-attachments/assets/8084efde-bbf9-4507-b9c6-27ee0f5a8c64" />
+<img width="1917" height="1047" alt="image" src="https://github.com/user-attachments/assets/8c90ee05-7bf6-47f2-9876-06726aede317" />
+<img width="1919" height="1039" alt="image" src="https://github.com/user-attachments/assets/b246a680-f2aa-42f4-8521-1170952ddfec" />
+
+
+---
+
+### 3. Verificar Conexão
+
+Você pode confirmar que o repositório foi adicionado corretamente acessando novamente  
+**Settings → Repositories** no painel do ArgoCD.  
+
+O repositório deve aparecer listado com o **Status: Successful**.
+
+---
+
+### Dica de Segurança
+
+- Nunca exponha seu token público ou em commits do Git.  
+- Tokens com permissão apenas de leitura (`repo:read`) já são suficientes para o ArgoCD.  
