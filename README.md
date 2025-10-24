@@ -109,7 +109,6 @@ git --version
    - **Description:** `(Opcional)`
    - Marque **"Public"** *Importante! Caso não esteja público, o ArgoCD não vai conseguir se conectar no repositório*
 4. Clique em **"Create repository"**
-5. Acesse o repositório com o código aqui!
 
 ### 1.2  Configurar Repositório Local
 **Passo a passo:**
@@ -134,6 +133,7 @@ git clone https://github.com/SeuUsuario/kubernetes-compassuol-code.git
 3. **Copie TODO** o conteúdo do arquivo
 4. **Cole** no seu arquivo `online-boutique.yaml`
 5. Salve e feche o arquivo
+6.  Acesse o repositório com o código <a href="https://github.com/iCrowleySHR/kubernetes-compassuol-code">aqui</a> ! Mas, o código pode ser encontrado na pasta k8s deste repositório também!
 
 
 ### 1.5  Fazer Commit e Push
