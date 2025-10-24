@@ -100,14 +100,7 @@ git --version
 
 ## ETAPA 1: Criar Repositório Git
 
-### 1.1 Fazer Fork do Repositório Original
-**Passo a passo:**
-1. Acesse: [https://github.com/GoogleCloudPlatform/microservices-demo](https://github.com/GoogleCloudPlatform/microservices-demo)
-2. No canto superior direito, clique em **"Fork"**
-3. Selecione sua conta como destino
-4. Aguarde a cópia ser criada
-
-### 1.2 Criar Novo Repositório
+### 1.1 Criar Novo Repositório
 **Passo a passo:**
 1. No GitHub, clique no seu perfil → **"Your repositories"**
 2. Clique em **"New"**
@@ -117,7 +110,7 @@ git --version
    - Marque **"Public"** *Importante! Caso não esteja público, o ArgoCD não vai conseguir se conectar no repositório*
 4. Clique em **"Create repository"**
 
-### 1.3  Configurar Repositório Local
+### 1.2  Configurar Repositório Local
 **Passo a passo:**
 1. Abra o Prompt de Comando/Terminal
 2. Crie e entre na pasta que você deseja clonar o repositório:
