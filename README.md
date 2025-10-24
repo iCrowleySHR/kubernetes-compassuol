@@ -47,7 +47,7 @@ kubectl get nodes
 **Teste a instalação:**
 
 ```bash
-`kubectl version --client`
+kubectl version --client
 ```
 
 **Resultado esperado:** Mostra a versão instalada
