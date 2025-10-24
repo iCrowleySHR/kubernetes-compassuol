@@ -105,10 +105,11 @@ git --version
 1. No GitHub, clique no seu perfil → **"Your repositories"**
 2. Clique em **"New"**
 3. Preencha:
-   - **Repository name:** `kubernetes-compassuol`
+   - **Repository name:** `kubernetes-compassuol-code`
    - **Description:** `(Opcional)`
    - Marque **"Public"** *Importante! Caso não esteja público, o ArgoCD não vai conseguir se conectar no repositório*
 4. Clique em **"Create repository"**
+5. Acesse o repositório com o código aqui!
 
 ### 1.2  Configurar Repositório Local
 **Passo a passo:**
@@ -116,7 +117,7 @@ git --version
 2. Crie e entre na pasta que você deseja clonar o repositório:
 
 ```bash
-git clone https://github.com/SeuUsuario/kubernetes-compassuol.git
+git clone https://github.com/SeuUsuario/kubernetes-compassuol-code.git
 ```
 
 > Troque *SeuUsuario* pelo seu nickname do GitHub
@@ -316,7 +317,7 @@ Para resolver isso, é necessário **adicionar suas credenciais do GitHub** dent
 
 **Repository URL:**  
 ```bash
-https://github.com/SeuUsuario/kubernetes-compassuol.git**
+https://github.com/SeuUsuario/.git**
 ```
 
 **Username:**  
